@@ -28,7 +28,7 @@ class FIFOCache(BaseCaching):
         you must print DISCARD: with the key discarded
         and following by a new line
         """
-        if key is not None or item is not None:
+        if key is not None and item is not None:
             keys = sorted(self.cache_data.keys())
             size = len(self.cache_data.keys())
             if size == self.MAX_ITEMS and key not in keys:
