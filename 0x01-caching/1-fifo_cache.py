@@ -15,6 +15,7 @@ class FIFOCache(BaseCaching):
     def __init__(self):
         """initialize"""
         super().__init__()
+        self.order = []
 
     def put(self, key, item):
         """
@@ -28,14 +29,15 @@ class FIFOCache(BaseCaching):
         you must print DISCARD: with the key discarded
         and following by a new line
         """
-        if key is not None and item is not None:
-            keys = sorted(self.cache_data.keys())
-            size = len(self.cache_data.keys())
-            if size == self.MAX_ITEMS and key not in keys:
-                topKey = keys[0]
-                self.cache_data.pop(topKey)
-                print("DISCARD: {}".format(topKey))
-            self.cache_data[key] = item
+        existing_keys = self.cache_data.keys()
+        size = len(existing_keys)
+        if size == self.MAX_ITEMS and key not in existing_keys:
+            firstKey = self.order[0]
+            self.cache_data.pop(firstKey)
+            self.order.remove(firstKey)
+            print("DISCARD: {}".format(firstKey))
+        self.cache_data[key] = item
+        self.order.append(key)
 
     def get(self, key):
         """
