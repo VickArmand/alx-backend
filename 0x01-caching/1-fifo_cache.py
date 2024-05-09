@@ -29,15 +29,16 @@ class FIFOCache(BaseCaching):
         you must print DISCARD: with the key discarded
         and following by a new line
         """
-        existing_keys = self.cache_data.keys()
-        size = len(existing_keys)
-        if size == self.MAX_ITEMS and key not in existing_keys:
-            firstKey = self.order[0]
-            self.cache_data.pop(firstKey)
-            self.order.remove(firstKey)
-            print("DISCARD: {}".format(firstKey))
-        self.cache_data[key] = item
-        self.order.append(key)
+        if key is not None and item is not None:
+            existing_keys = self.cache_data.keys()
+            size = len(existing_keys)
+            if size == self.MAX_ITEMS and key not in existing_keys:
+                firstKey = self.order[0]
+                self.cache_data.pop(firstKey)
+                self.order.remove(firstKey)
+                print("DISCARD: {}".format(firstKey))
+            self.cache_data[key] = item
+            self.order.append(key)
 
     def get(self, key):
         """
