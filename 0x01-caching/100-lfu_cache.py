@@ -57,7 +57,6 @@ class LFUCache(BaseCaching):
                 self.frequencyUsed[key] = value + 1
             else:
                 self.frequencyUsed[key] = 1
-        print(self.frequencyUsed)
 
     def get(self, key):
         """
@@ -77,5 +76,4 @@ class LFUCache(BaseCaching):
             else:
                 self.frequencyUsed[key] = 1
             self.recentlyUsed.append(key)
-        print(self.frequencyUsed)
         return value
