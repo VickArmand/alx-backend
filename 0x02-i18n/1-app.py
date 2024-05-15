@@ -3,6 +3,7 @@ from flask_babel import Babel, refresh
 from flask import Flask, render_template
 app = Flask(__name__)
 babel = Babel(app)
+app.url_map.strict_slashes = False
 
 
 class Config:
@@ -27,3 +28,7 @@ def home() -> str:
     return render_template('1-index.html',
                            language=app.config['BABEL_DEFAULT_LOCALE'],
                            timezone=app.config['BABEL_DEFAULT_TIMEZONE'])
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
