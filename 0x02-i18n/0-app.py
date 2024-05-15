@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def home() -> None:
+def home() -> str:
     """
     Create a single / route and an index.html template
     that simply outputs “Welcome to Holberton” as page title (<title>)

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from flask_babel import Babel, refresh
 from flask import Flask, render_template
 app = Flask(__name__)
@@ -15,7 +16,7 @@ class Config:
 
 
 @app.route('/')
-def home() -> None:
+def home() -> str:
     """
     Create a single / route and an index.html template
     that simply outputs “Welcome to Holberton” as page title (<title>)
