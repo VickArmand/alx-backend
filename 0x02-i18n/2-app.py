@@ -25,7 +25,7 @@ def home() -> str:
     that simply outputs “Welcome to Holberton” as page title (<title>)
     and “Hello world” as header (<h1>).
     """
-    return render_template('1-index.html')
+    return render_template('2-index.html')
 
 
 @babel.localeselector
