@@ -35,7 +35,7 @@ def home() -> str:
     status = 'You are not logged in.'
     if g.user:
         status = f'You are logged in as {g.user.name}.'
-    return render_template('4-index.html', status)
+    return render_template('6-index.html', status)
 
 
 @babel.localeselector
