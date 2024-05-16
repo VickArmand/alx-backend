@@ -6,6 +6,13 @@ app = Flask(__name__)
 babel = Babel(app)
 app.url_map.strict_slashes = False
 
+users = {
+        1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
+        2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
+        3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
+        4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
+        }
+
 
 class Config:
     """configuration class"""
@@ -47,12 +54,6 @@ def get_user():
     returns a user dictionary or None
     if the ID cannot be found or if login_as was not passed.
     """
-    users = {
-        1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
-        2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
-        3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
-        4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
-    }
     query = request.query_string.decode('utf-8').split('login_as=')
     if len(query) == 2:
         id = int(query[1])
