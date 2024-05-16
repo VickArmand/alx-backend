@@ -63,7 +63,11 @@ def get_user():
 
 @app.before_request
 def before_request():
-    """"""
+    """
+    executed before all other functions.
+    before_request should use get_user to find a user if any,
+    and set it as a global on flask.g.user
+    """
     user = get_user()
     if user:
         g.user = user
