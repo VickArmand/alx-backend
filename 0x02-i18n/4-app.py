@@ -18,19 +18,14 @@ class Config:
         app.config.from_object(Config())
 
 
-@app.route('/')
-def home() -> str:
-    """
-    Create a single / route and an index.html template
-    that simply outputs “Welcome to Holberton” as page title (<title>)
-    and “Hello world” as header (<h1>).
-    """
-    return render_template('3-index.html')
-
-
 @babel.localeselector
 def get_locale():
     """Get locale from request"""
+    query = request.query_string.decode('utf-8').split('locale=')
+    if len(query) == 2:
+        locale = query[1]
+        if locale in app.config['LANGUAGES']:
+            return locale
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
