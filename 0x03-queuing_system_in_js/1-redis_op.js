@@ -8,16 +8,16 @@
  *      It accepts one argument schoolName.
  *      It should log to the console the value for the key passed as argument
  */
-import {createClient} from "redis";
+import {createClient, print} from "redis";
 const client = createClient();
 client.on('error', (err) => {
   console.log(`Redis client not connected to the server: ${err}`);
 });
-client.on('ready', () => {
+client.on('connect', () => {
   console.log('Redis client connected to the server');
 });
 function setNewSchool(schoolName, value) {
-  client.set(schoolName, value);
+  client.set(schoolName, value, print);
 }
 function displaySchoolValue(schoolName) {
   client.get(schoolName, (err, result) => console.log(result));
