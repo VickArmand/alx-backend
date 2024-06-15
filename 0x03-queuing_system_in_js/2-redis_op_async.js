@@ -1,4 +1,7 @@
-/** */
+/**
+ * Using promisify,
+ * modify the function displaySchoolValue to use ES6 async / await
+ */
 import {print, createClient} from "redis";
 import util from 'util';
 const client = createClient();
